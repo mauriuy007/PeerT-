@@ -40,25 +40,6 @@ This structure ensures scalability, testability, and long-term maintainability.
 
 ---
 
-## 💡 Subscription Model (Planned)
-
-PeerT will support a subscription-based experience:
-
-### Free Tier
-- Access to core travel planning features
-- Display of advertisements
-- Generic travel and flight offers
-
-### Premium Subscription
-- Ad-free experience
-- Access to curated and better travel deals
-- Enhanced flight and offer recommendations
-- Priority access to selected features
-
-The subscription system will be implemented at the backend level, allowing flexible evolution of business rules without impacting the core domain.
-
----
-
 ## 🛠️ Tech Stack
 
 - Node.js
