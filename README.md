@@ -66,6 +66,7 @@ The subscription system will be implemented at the backend level, allowing flexi
 - Express
 - Clean Architecture
 - External Travel APIs (Weather, Currency Exchange, Flights, Hotels)
+- Prisma ORM
 
 ---
 
