@@ -60,8 +60,3 @@ This project is currently in **early development**, with a focus on:
 
 Features and integrations will be added incrementally.
 
----
-
-## 📄 License
-
-This project is for learning and experimental purposes. Licensing details may be defined later.
