@@ -1,10 +1,9 @@
 class User {
-  private readonly id: number;
-  private email: Email;
-  private password: Password; 
-  constructor(id: number, email: Email, password: Password) {
-    this.id = id;
-    this.email = email;
-    this.password = password;
-  }
+  constructor(
+    public readonly id: number,
+    public readonly email: Email,
+    public readonly password: Password,
+    public readonly name: Name,
+    public readonly lastName: Name
+  ) {}
 }

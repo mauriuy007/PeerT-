@@ -1,11 +1,12 @@
 class Trip {
-    private readonly id: number;
-    private name: Name;
-    private startDate: StartDate;
-    
-    constructor(id: number, name: Name, startDate: StartDate) {
-        this.id = id;
-        this.name = name;
-        this.startDate = startDate;
-    }
+  private participants: TripParticipant[] = [];
+
+  constructor(
+    public readonly id: number,
+    public readonly name: Name,
+    public readonly startDate: Date,
+    public readonly endDate: Date,
+    public readonly createdAt: Date
+  ) {}
+
 }
