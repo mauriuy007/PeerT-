@@ -60,6 +60,104 @@ This structure ensures scalability, testability, and long-term maintainability.
 - Docker and Azure for deployment and containerization
 ---
 
+## 🌍 External APIs & Integrations (Planned)
+
+This project is designed to integrate with multiple third-party APIs to enrich the travel experience, centralizing data from different providers into a single backend (BFF-style architecture).
+
+Below is a list of **tentative APIs** selected based on relevance, realism, and learning value.
+
+---
+
+### 🗺️ **:contentReference[oaicite:0]{index=0}**
+**Purpose:** Maps, geolocation, and places  
+**Use cases:**
+- Displaying destinations on maps
+- Geocoding and reverse geocoding
+- Distance and route calculations
+- Autocomplete for destinations and places
+
+Chosen as a flexible and developer-friendly alternative to Google Maps.
+
+---
+
+### ✈️ **:contentReference[oaicite:1]{index=1}**
+**Purpose:** Flights and aviation data  
+**Use cases:**
+- Airport and airline information
+- Flight search and offers
+- IATA code validation
+- Travel planning support
+
+Amadeus provides a realistic travel-tech experience and offers a sandbox environment suitable for development and portfolio projects.
+
+---
+
+### 🏨 **:contentReference[oaicite:2]{index=2}**
+**Purpose:** Accommodation data  
+**Use cases:**
+- Hotel search by destination
+- Basic hotel information and availability
+- Price comparisons (where available)
+
+This integration is exploratory and may be used to enrich trip planning with accommodation suggestions.
+
+---
+
+### 🌦️ **:contentReference[oaicite:3]{index=3}**
+**Purpose:** Weather and forecasts  
+**Use cases:**
+- Current weather per destination
+- Forecasts aligned with trip dates
+- Weather-based itinerary insights
+
+Weather data significantly improves user experience by adding contextual information to trips.
+
+---
+
+### 🗿 **:contentReference[oaicite:4]{index=4}**
+**Purpose:** Tourist attractions and points of interest  
+**Use cases:**
+- Discovering landmarks and attractions
+- Enriching destinations with cultural and touristic data
+- Suggesting activities within a trip itinerary
+
+OpenTripMap is open and well-suited for exploration without heavy commercial restrictions.
+
+---
+
+### 💱 **:contentReference[oaicite:5]{index=5}**
+**Purpose:** Currency conversion  
+**Use cases:**
+- Budget calculations
+- Expense tracking across multiple currencies
+- Shared trip expenses
+
+Useful for trips involving multiple countries and currencies.
+
+---
+
+### 🔐 **:contentReference[oaicite:6]{index=6}**
+**Purpose:** Authentication and authorization  
+**Use cases:**
+- Secure user authentication
+- JWT-based access control
+- Role and permission management
+
+Auth0 may be used to handle authentication flows while keeping the backend stateless.
+
+---
+
+### 💳 **:contentReference[oaicite:7]{index=7}**
+**Purpose:** Payments and subscriptions  
+**Use cases:**
+- Subscription management
+- Payment flows
+- Webhook-based payment events
+
+dLocal is planned as the payment provider, aligning with real-world fintech integrations and subscription-based features.
+
+
+---
 ## 📌 Project Status
 
 This project is currently in **early development**, with a focus on:
