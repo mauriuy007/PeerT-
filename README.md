@@ -40,6 +40,15 @@ This structure ensures scalability, testability, and long-term maintainability.
 
 ---
 
+## 📐 Domain Model
+
+> This diagram represents the core domain model and aggregate boundaries,
+> following Domain-Driven Design and Clean Architecture principles.
+
+![Domain Class Diagram](docs/diagram.png)
+
+---
+
 ## 🛠️ Tech Stack
 
 - Node.js
