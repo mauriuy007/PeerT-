@@ -1,3 +1,3 @@
-export interface GetAllRepoInterface<T> {
+export interface IGetAllRepo<T> {
   getAll(): T[];
 }

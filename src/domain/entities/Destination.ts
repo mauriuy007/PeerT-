@@ -1,4 +1,4 @@
-class Destination {
+export class Destination {
   constructor(
     public readonly id: number,
     public readonly city: City,
