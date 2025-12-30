@@ -1,4 +1,4 @@
-class Booking {
+export class Booking {
   constructor(
     public readonly id: number,
     public readonly tripId: number,
