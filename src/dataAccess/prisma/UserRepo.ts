@@ -7,4 +7,13 @@ export class UserRepo implements IUserRepo {
     // prisma.user.create({ data: { ... } })
     return 1;
   }
+  async getById(id: number): Promise<User | null> {
+    return null;
+  }
+  async getByEmail(email: string): Promise<User | null> {
+    return null;
+  }
+  async getAll(): Promise<User[]> {
+    return [];
+  }
 }

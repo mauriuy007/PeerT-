@@ -1,3 +1,3 @@
 export interface IGetAllRepo<T> {
-  getAll(): T[];
+  getAll(): Promise<T[]>;
 }
