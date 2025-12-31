@@ -1,3 +1,3 @@
 export interface IGetByIdRepo<T> {
-    getById(id: number): T | null;
+    getById(id: number): Promise<T | null>;
 }

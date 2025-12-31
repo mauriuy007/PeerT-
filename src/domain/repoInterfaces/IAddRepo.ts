@@ -1,3 +1,3 @@
 export interface IAddRepo<T> {
-    add(entity: T): number;
+    add(entity: T): Promise<number>;
 }
