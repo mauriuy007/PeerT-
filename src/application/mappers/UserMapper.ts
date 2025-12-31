@@ -1,4 +1,5 @@
 import {CreateUserDto} from "../dtos/user/CreateUserDto"
+import {CreateUserResponseDto} from "../dtos/user/CreateUserResponseDto"
 import { User } from "../../domain/entities/User";
 
 export class UserMapper {
@@ -11,4 +12,15 @@ export class UserMapper {
       email: { value: dto.email },
     };
   }
+
+   static mapEntityToCreateResponse(user: User): CreateUserResponseDto {
+    return {
+      id: user.id,
+      name: user.name.value,
+      lastName: user.lastName.value,
+      email: user.email.value,
+    }
+     
+  }
+
 }

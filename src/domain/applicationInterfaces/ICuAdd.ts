@@ -1,3 +1,3 @@
-export interface ICuAdd<T> {
-  execute(input: T): Promise<number>;
+export interface ICuAdd<I, O> {
+  execute(input: I): Promise<O>;
 }

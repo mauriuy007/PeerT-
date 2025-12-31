@@ -8,7 +8,10 @@ export class UserRepo implements IUserRepo {
     return 1;
   }
   async getById(id: number): Promise<User | null> {
-    return null;
+    const user = await prisma.users.findUnique({
+      where: { id },
+    });
+    return user;
   }
   async getByEmail(email: string): Promise<User | null> {
     return null;
