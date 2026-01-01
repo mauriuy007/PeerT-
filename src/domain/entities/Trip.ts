@@ -1,4 +1,7 @@
-class Trip {
+import { TripParticipant } from "./TripParticipant";
+
+
+export class Trip {
   private participants: TripParticipant[] = [];
 
   constructor(

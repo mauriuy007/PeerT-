@@ -1,4 +1,4 @@
-class TripParticipant {
+export class TripParticipant {
   constructor(
     public readonly id: number,
     public readonly userId: number,

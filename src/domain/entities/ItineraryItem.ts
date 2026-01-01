@@ -1,4 +1,4 @@
-class ItineraryItem {
+export class ItineraryItem {
   constructor(
     public readonly id: number,
     public readonly tripId: number,

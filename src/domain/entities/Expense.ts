@@ -1,4 +1,4 @@
-class Expense {
+export class Expense {
   constructor(
     public readonly id: number,
     public readonly tripId: number,
