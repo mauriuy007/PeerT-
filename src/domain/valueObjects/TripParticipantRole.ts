@@ -1,4 +1,4 @@
-class TripParticipantRole {
+export class TripParticipantRole {
   private constructor(
     private readonly value: "OWNER" | "MEMBER"
   ) {}

@@ -1,4 +1,4 @@
-class BookingType {
+export class BookingType {
   private constructor(private readonly value: string) {}
 
   static FLIGHT = new BookingType("FLIGHT");

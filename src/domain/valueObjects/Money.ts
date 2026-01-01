@@ -1,4 +1,5 @@
-class Money {
+import { Currency } from "./Currency";
+export class Money {
   constructor(
     private readonly amount: number,
     private readonly currency: Currency
