@@ -1,5 +1,5 @@
-class Password {
-    private readonly value: string;
+export class Password {
+     readonly value: string;
 
     constructor(value: string) {
         this.value = value;

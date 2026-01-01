@@ -36,4 +36,29 @@ export class UserMapper {
     );
   }
 
+    /**
+   * Domain Entity -> Persistence (Prisma)
+   */
+  static mapEntityToPersistence(user: User) {
+    return {
+      email: user.email.value,
+      password: user.password.value,
+      name: user.name.value,
+      lastName: user.lastName.value
+    };
+  }
+
+  /**
+   * Persistence (Prisma) -> Domain Entity
+   */
+  static mapPersistenceToEntity(raw: any): User {
+    return new User(
+      raw.id,
+      new Email(raw.email),
+      new Password(raw.password),
+      new Name(raw.name),
+      new LastName(raw.lastName)
+    );
+  }
+
 }
