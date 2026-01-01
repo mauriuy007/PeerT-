@@ -1,5 +1,5 @@
 import { TripParticipant } from "./TripParticipant";
-
+import { Name } from "../valueObjects/Name";
 
 export class Trip {
   private participants: TripParticipant[] = [];

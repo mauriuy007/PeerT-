@@ -5,6 +5,7 @@ import { User } from "../../domain/entities/User";
 import { Email } from "../../domain/valueObjects/Email";
 import { Name } from "../../domain/valueObjects/Name";
 import { Password } from "../../domain/valueObjects/Password";
+import { LastName } from "../../domain/valueObjects/LastName";
 
 export class UserMapper {
 

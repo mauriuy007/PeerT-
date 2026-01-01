@@ -1,3 +1,8 @@
+import { Money } from "../valueObjects/Money";
+import { Category } from "../valueObjects/Cateogory";
+import { Name } from "../valueObjects/Name";
+import { Description } from "../valueObjects/Description";
+
 export class Expense {
   constructor(
     public readonly id: number,
