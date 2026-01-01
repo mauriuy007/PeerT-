@@ -5,7 +5,7 @@ const router = Router();
 
 // POST /api/users
 router.post(
-  "/users",
+  "/users/signUp",
   (req, res) => CreateUserController.handle(req, res)
 );
 
