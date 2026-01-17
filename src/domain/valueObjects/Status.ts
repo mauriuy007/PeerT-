@@ -1,4 +1,4 @@
-class Status {
+export class Status {
   private constructor(private readonly value: string) {}
 
   static CONFIRMED = new Status("CONFIRMED");

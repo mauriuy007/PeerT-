@@ -1,2 +1,2 @@
-export class NullNameException extends Error {
+export class NullEmailException extends Error {
 }

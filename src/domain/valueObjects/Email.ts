@@ -1,5 +1,5 @@
-class Email {
-  private readonly value: string;
+export class Email {
+  readonly value: string;
 
   constructor(emailAddress: string) {
     this.value = emailAddress;

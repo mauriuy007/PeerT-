@@ -1,4 +1,4 @@
-class StartDate {
+export class StartDate {
     private readonly value: Date;
 
     constructor(value: Date) {

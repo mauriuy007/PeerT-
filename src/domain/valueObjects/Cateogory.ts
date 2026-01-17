@@ -1,4 +1,4 @@
-class Category {
+export class Category {
   private constructor(private readonly value: string) {}
 
   static FOOD = new Category("FOOD");
