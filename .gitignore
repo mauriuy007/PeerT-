@@ -61,3 +61,4 @@ temp/
 # =========================
 *.drawio
 *.drawio.bkp
+/src/generated/prisma
