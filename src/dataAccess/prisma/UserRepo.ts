@@ -1,7 +1,7 @@
 // src/dataAccess/prisma/UserRepo.ts
 import { IUserRepo } from "../../domain/repoInterfaces/IUserRepo";
 import { User } from "../../domain/entities/User";
-import { prisma } from "../prismaClient";
+import { prisma } from "./PrismaClient";
 import { UserMapper } from "../../application/mappers/UserMapper";
 
 export class UserRepo implements IUserRepo {
@@ -13,10 +13,11 @@ export class UserRepo implements IUserRepo {
   return UserMapper.mapPersistenceToEntity(created);
 }
   async getById(id: number): Promise<User | null> {
-    const user = await prisma.users.findUnique({
-      where: { id },
-    });
-    return user;
+    const userEntity = await prisma.user.findUnique({
+        where: { id },
+      });
+    return userEntity ? UserMapper.mapPersistenceToEntity(userEntity) : null;
+
   }
   async getByEmail(email: string): Promise<User | null> {
     return null;
