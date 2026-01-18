@@ -20,9 +20,13 @@ export class UserRepo implements IUserRepo {
 
   }
   async getByEmail(email: string): Promise<User | null> {
-    return null;
+    const userEntity = await prisma.user.findUnique({
+        where: { email },
+      });
+    return userEntity ? UserMapper.mapPersistenceToEntity(userEntity) : null;
   }
   async getAll(): Promise<User[]> {
-    return [];
+    const users = await prisma.user.findMany();
+    return users.map(user => UserMapper.mapPersistenceToEntity(user));
   }
 }
