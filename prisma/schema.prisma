@@ -1,0 +1,116 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               Int               @id @default(autoincrement())
+  email            String            @unique
+  password         String
+  name             String
+  lastName         String
+  tripParticipants TripParticipant[]
+}
+
+model Trip {
+  id             Int               @id @default(autoincrement())
+  name           String
+  startDate      DateTime
+  endDate        DateTime
+  createdAt      DateTime          @default(now())
+  participants   TripParticipant[]
+  bookings       Booking[]
+  expenses       Expense[]
+  itineraryItems ItineraryItem[]
+}
+
+model TripParticipant {
+  id       Int                 @id @default(autoincrement())
+  userId   Int
+  tripId   Int
+  role     TripParticipantRole
+  joinedAt DateTime            @default(now())
+  user     User                @relation(fields: [userId], references: [id])
+  trip     Trip                @relation(fields: [tripId], references: [id])
+}
+
+enum TripParticipantRole {
+  OWNER
+  MEMBER
+}
+
+model Booking {
+  id          Int           @id @default(autoincrement())
+  tripId      Int
+  bookingType BookingType
+  provider    String
+  reference   String
+  amount      Float
+  currency    String
+  status      BookingStatus
+  createdAt   DateTime      @default(now())
+  trip        Trip          @relation(fields: [tripId], references: [id])
+}
+
+enum BookingType {
+  FLIGHT
+  HOTEL
+  CAR
+  EVENT
+}
+
+enum BookingStatus {
+  CONFIRMED
+  PENDING
+  CANCELLED
+}
+
+model Expense {
+  id              Int             @id @default(autoincrement())
+  tripId          Int
+  amount          Float
+  currency        String
+  category        ExpenseCategory
+  date            DateTime
+  itineraryItemId Int?
+  name            String
+  description     String
+  createdAt       DateTime        @default(now())
+  trip            Trip            @relation(fields: [tripId], references: [id])
+  itineraryItem   ItineraryItem?  @relation(fields: [itineraryItemId], references: [id])
+}
+
+enum ExpenseCategory {
+  FOOD
+  TRANSPORT
+  LODGING
+  ACTIVITIES
+  OTHER
+}
+
+model ItineraryItem {
+  id            Int         @id @default(autoincrement())
+  tripId        Int
+  date          DateTime
+  destinationId Int
+  name          String
+  description   String
+  trip          Trip        @relation(fields: [tripId], references: [id])
+  destination   Destination @relation(fields: [destinationId], references: [id])
+  expenses      Expense[]
+}
+
+model Destination {
+  id             Int             @id @default(autoincrement())
+  city           String
+  country        String
+  countryCode    String
+  latitude       Float
+  longitude      Float
+  timezone       String
+  itineraryItems ItineraryItem[]
+}
