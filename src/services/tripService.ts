@@ -1,5 +1,7 @@
-import prisma from '../data/prismaClient';
 import { Prisma, TripParticipantRole } from '@prisma/client';
+import prisma from '../data/prismaClient';
+import { UserAlreadyInTripError } from '../errors/conflict';
+import { TripNotFoundError } from '../errors/notFound';
 
 type CreateTripData = Pick<Prisma.TripCreateInput, 'name' | 'startDate' | 'endDate'>;
 
@@ -16,7 +18,7 @@ export async function createTrip(data: CreateTripData, ownerId: number) {
 }
 
 export async function getTripById(id: number) {
-  return prisma.trip.findUnique({
+  const trip = await prisma.trip.findUnique({
     where: { id },
     include: {
       participants: true,
@@ -25,6 +27,8 @@ export async function getTripById(id: number) {
       itineraryItems: { include: { destination: true } },
     },
   });
+  if (!trip) throw new TripNotFoundError();
+  return trip;
 }
 
 export async function getAllTrips() {
@@ -32,14 +36,30 @@ export async function getAllTrips() {
 }
 
 export async function updateTrip(id: number, data: Prisma.TripUpdateInput) {
-  return prisma.trip.update({ where: { id }, data });
+  try {
+    return await prisma.trip.update({ where: { id }, data });
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+      throw new TripNotFoundError();
+    }
+    throw error;
+  }
 }
 
 export async function deleteTrip(id: number) {
-  return prisma.trip.delete({ where: { id } });
+  try {
+    return await prisma.trip.delete({ where: { id } });
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+      throw new TripNotFoundError();
+    }
+    throw error;
+  }
 }
 
 export async function addParticipant(tripId: number, data: { userId: number; role: TripParticipantRole }) {
+  const existing = await prisma.tripParticipant.findFirst({ where: { tripId, userId: data.userId } });
+  if (existing) throw new UserAlreadyInTripError();
   return prisma.tripParticipant.create({ data: { tripId, ...data } });
 }
 
