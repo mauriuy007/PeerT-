@@ -1,7 +1,13 @@
 import { Prisma, TripParticipantRole } from '@prisma/client';
 import prisma from '../data/prismaClient';
 import { UserAlreadyInTripError } from '../errors/conflict';
+import { ForbiddenError } from '../errors/auth';
 import { TripNotFoundError } from '../errors/notFound';
+
+export async function assertTripMembership(tripId: number, userId: number) {
+  const participant = await prisma.tripParticipant.findFirst({ where: { tripId, userId } });
+  if (!participant) throw new ForbiddenError();
+}
 
 type CreateTripData = Pick<Prisma.TripCreateInput, 'name' | 'startDate' | 'endDate'>;
 
@@ -31,8 +37,11 @@ export async function getTripById(id: number) {
   return trip;
 }
 
-export async function getAllTrips() {
-  return prisma.trip.findMany({ include: { participants: true } });
+export async function getAllTrips(userId: number) {
+  return prisma.trip.findMany({
+    where: { participants: { some: { userId } } },
+    include: { participants: true },
+  });
 }
 
 export async function updateTrip(id: number, data: Prisma.TripUpdateInput) {

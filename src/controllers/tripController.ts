@@ -5,8 +5,7 @@ import * as tripService from '../services/tripService';
 
 export async function createTrip(req: Request, res: Response) {
   try {
-    const { ownerId, ...tripData } = req.body;
-    const trip = await tripService.createTrip(tripData, ownerId);
+    const trip = await tripService.createTrip(req.body, req.user!.id);
     res.status(201).json(trip);
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
@@ -26,9 +25,9 @@ export async function getTripById(req: Request, res: Response) {
   }
 }
 
-export async function getAllTrips(_req: Request, res: Response) {
+export async function getAllTrips(req: Request, res: Response) {
   try {
-    const trips = await tripService.getAllTrips();
+    const trips = await tripService.getAllTrips(req.user!.id);
     res.json(trips);
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
