@@ -1,11 +1,13 @@
 import { Prisma } from '@prisma/client';
+import bcrypt from 'bcrypt';
 import prisma from '../data/prismaClient';
 import { EmailAlreadyInUseError } from '../errors/conflict';
 import { UserNotFoundError } from '../errors/notFound';
 
 export async function createUser(data: Prisma.UserCreateInput) {
   try {
-    return await prisma.user.create({ data });
+    const hashedPassword = await bcrypt.hash(data.password as string, 10);
+    return await prisma.user.create({ data: { ...data, password: hashedPassword } });
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
       throw new EmailAlreadyInUseError();

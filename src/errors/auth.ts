@@ -9,3 +9,9 @@ export class ForbiddenError extends Error {
     super('You do not have permission to perform this action');
   }
 }
+
+export class InvalidCredentialsError extends Error {
+  constructor() {
+    super('Invalid email or password');
+  }
+}
