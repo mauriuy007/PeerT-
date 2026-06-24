@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client';
 import prisma from '../data/prismaClient';
 import { DestinationNotFoundError } from '../errors/notFound';
+import * as placesService from './placesService';
 
 export async function createDestination(data: Prisma.DestinationCreateInput) {
   return prisma.destination.create({ data });
@@ -36,4 +37,29 @@ export async function deleteDestination(id: number) {
     }
     throw error;
   }
+}
+
+export async function searchDestinations(query: string) {
+  return placesService.searchCities(query);
+}
+
+export async function getOrCreateFromPlace(placeId: string) {
+  const existing = await prisma.destination.findUnique({ where: { externalId: placeId } });
+  if (existing) return existing;
+
+  const details = await placesService.getDestinationDetails(placeId);
+
+  return prisma.destination.create({
+    data: {
+      city: details.city,
+      country: details.country,
+      countryCode: details.countryCode,
+      latitude: details.latitude,
+      longitude: details.longitude,
+      timezone: details.timezone,
+      description: details.description,
+      imageUrl: details.imageUrl,
+      externalId: details.placeId,
+    },
+  });
 }

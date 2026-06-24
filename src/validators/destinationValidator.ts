@@ -17,3 +17,11 @@ export const updateDestinationSchema = Joi.object({
   longitude: Joi.number().min(-180).max(180),
   timezone: Joi.string(),
 }).min(1);
+
+export const searchDestinationsSchema = Joi.object({
+  query: Joi.string().min(2).required(),
+});
+
+export const fromPlaceSchema = Joi.object({
+  placeId: Joi.string().required(),
+});
