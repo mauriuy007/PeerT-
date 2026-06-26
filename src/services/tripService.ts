@@ -12,9 +12,12 @@ export async function assertTripMembership(tripId: number, userId: number) {
 type CreateTripData = Pick<Prisma.TripCreateInput, 'name' | 'startDate' | 'endDate'>;
 
 export async function createTrip(data: CreateTripData, ownerId: number) {
+  const { name, startDate, endDate } = data;
   return prisma.trip.create({
     data: {
-      ...data,
+      name,
+      startDate: new Date(startDate as unknown as string),
+      endDate: new Date(endDate as unknown as string),
       participants: {
         create: { userId: ownerId, role: 'OWNER' },
       },

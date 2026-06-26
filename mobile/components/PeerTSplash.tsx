@@ -15,7 +15,9 @@ import Svg, {
 
 const { width } = Dimensions.get("window");
 
-export default function PeerTSplash() {
+type Props = { onFinish?: () => void };
+
+export default function PeerTSplash({ onFinish }: Props) {
   const flyX     = useSharedValue(-width);
   const scale    = useSharedValue(0.9);
   const translateY = useSharedValue(0);
@@ -63,6 +65,9 @@ export default function PeerTSplash() {
     // Texto
     textOpacity.value = withDelay(700, withTiming(1, { duration: 500 }));
     textY.value       = withDelay(700, withTiming(0, { duration: 500 }));
+
+    const timer = setTimeout(() => onFinish?.(), 2600);
+    return () => clearTimeout(timer);
   }, []);
 
   const sceneStyle = useAnimatedStyle(() => ({
