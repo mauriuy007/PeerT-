@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "notion": {
+      "type": "http",
+      "url": "https://mcp.notion.com/mcp"
+    },
+    "figma": {
+      "type": "http",
+      "url": "REPLACE_WITH_FIGMA_MCP_URL"
+    }
+  }
+}
