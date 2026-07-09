@@ -2,6 +2,15 @@
 
 Mirrors the "Team & Ways of Working" page in the project's Notion hub. This file is the versioned copy.
 
+## Where this runs
+
+This workflow works the same whether you drive it from Cowork (chat) or from **Claude Code** in this repo's terminal — both read/write the same Notion board and Figma file, so progress made in one shows up in the other.
+
+For Claude Code specifically:
+- Roles are real subagents: `.claude/agents/pm.md`, `.claude/agents/designer.md`, `.claude/agents/developer.md`. Invoke by name ("use the pm subagent") or let Claude Code pick them up from context.
+- `/run-team` (`.claude/commands/run-team.md`) runs PM → Designer → Developer in sequence, same as saying "run the team" in Cowork.
+- `.mcp.json` at the repo root wires up the Notion MCP server. The Figma MCP URL is a placeholder — fill it in from Figma's Dev Mode MCP settings (Figma app → menu → Settings → Dev Mode MCP Server), then run `claude mcp add` or just let Claude Code pick up `.mcp.json` on next start. Each surface (Cowork vs. Claude Code) authenticates to Notion/Figma separately the first time, even though the config is shared.
+
 ## How it's triggered
 
 Say **"run the team"** in chat. That launches three autonomous agents in sequence:
