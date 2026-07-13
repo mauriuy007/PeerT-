@@ -8,6 +8,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
+import PilotBadge from '../PilotBadge';
 
 type AuthView = 'login' | 'register';
 
@@ -44,6 +45,7 @@ export default function AuthScreen({ onAuthenticated }: Props) {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
         <View style={styles.brand}>
+          <PilotBadge size={72} />
           <Text style={styles.appName}>PeerT</Text>
           <Text style={styles.tagline}>Tu copiloto de viajes</Text>
         </View>
@@ -81,7 +83,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   brand: {
-    height: 160,
+    height: 190,
     alignItems: 'center',
     justifyContent: 'flex-end',
     paddingBottom: 32,
@@ -91,6 +93,7 @@ const styles = StyleSheet.create({
     fontSize: 42,
     fontWeight: '800',
     letterSpacing: 2,
+    marginTop: 8,
   },
   tagline: {
     color: 'rgba(255,255,255,0.75)',
