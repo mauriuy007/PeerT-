@@ -4,7 +4,7 @@ import {
   ActivityIndicator, StyleSheet,
 } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
-import { authApi } from '../../services/api';
+import { authApi, AuthResponse } from '../../services/api';
 
 type RegisterFields = {
   name: string;
@@ -15,7 +15,7 @@ type RegisterFields = {
 };
 
 type Props = {
-  onSuccess: (token: string) => void;
+  onSuccess: (token: string, user: AuthResponse['user']) => void;
   onGoLogin: () => void;
 };
 
@@ -34,7 +34,7 @@ export default function RegisterForm({ onSuccess, onGoLogin }: Props) {
     setLoading(true);
     try {
       const res = await authApi.register(data.name, data.lastName, data.email, data.password);
-      onSuccess(res.token);
+      onSuccess(res.token, res.user);
     } catch (e: any) {
       setApiError(e.message);
     } finally {

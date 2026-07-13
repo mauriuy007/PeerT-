@@ -4,12 +4,12 @@ import {
   ActivityIndicator, StyleSheet,
 } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
-import { authApi } from '../../services/api';
+import { authApi, AuthResponse } from '../../services/api';
 
 type LoginFields = { email: string; password: string };
 
 type Props = {
-  onSuccess: (token: string) => void;
+  onSuccess: (token: string, user: AuthResponse['user']) => void;
   onGoRegister: () => void;
 };
 
@@ -26,7 +26,7 @@ export default function LoginForm({ onSuccess, onGoRegister }: Props) {
     setLoading(true);
     try {
       const res = await authApi.login(data.email, data.password);
-      onSuccess(res.token);
+      onSuccess(res.token, res.user);
     } catch (e: any) {
       setApiError(e.message);
     } finally {

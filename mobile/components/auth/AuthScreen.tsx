@@ -9,11 +9,12 @@ import Animated, {
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import PilotBadge from '../PilotBadge';
+import { AuthResponse } from '../../services/api';
 
 type AuthView = 'login' | 'register';
 
 type Props = {
-  onAuthenticated: (token: string) => void;
+  onAuthenticated: (token: string, user: AuthResponse['user']) => void;
 };
 
 export default function AuthScreen({ onAuthenticated }: Props) {
